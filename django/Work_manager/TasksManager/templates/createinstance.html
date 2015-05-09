@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="confirmation" method="get" id="instance_form" >
+
+
+<table align="center">
+		<tr>
+				<td> Select AMI
+				</td>
+				<td>
+						<select id="amiid" name="amiid">
+		<option value="ami-09725f5b">snapdeal_hvm_image </option>
+										<option value="ami-18dfe24a">SD-CentOS-Official-AMI-HVM-DevOps</option>
+						</select>
+				</td>
+		</tr>
+		<tr>
+				<td> Instance Type
+				</td>
+				<td>
+					<select id="instancetype" name="instancetype">
+								<option value="t2.micro">t2.micro</option>
+<option value="t2.small">t2.small</option>
+<option value="t2.medium">t2.medium</option>
+<option value="m3.medium">m3.medium</option>
+<option value="m3.large">m3.large</option>
+<option value="m3.xlarge">m3.xlarge</option>
+<option value="m3.2xlarge">m3.2xlarge</option>
+<option value="c4.large">c4.large</option>
+<option value="c4.xlarge">c4.xlarge</option>
+<option value="c4.2xlarge">c4.2xlarge</option>
+<option value="c4.4xlarge">c4.4xlarge</option>
+<option value="c4.8xlarge">c4.8xlarge</option>
+<option value="c3.large">c3.large</option>
+<option value="c3.xlarge">c3.xlarge</option>
+<option value="c3.2xlarge">c3.2xlarge</option>
+<option value="c3.4xlarge">c3.4xlarge</option>
+<option value="c3.8xlarge">c3.8xlarge</option>
+<option value="g2.2xlarge">g2.2xlarge</option>
+<option value="g2.8xlarge">g2.8xlarge</option>
+<option value="r3.large">r3.large</option>
+<option value="r3.xlarge">r3.xlarge</option>
+<option value="r3.2xlarge">r3.2xlarge</option>
+<option value="r3.4xlarge">r3.4xlarge</option>
+<option value="r3.8xlarge">r3.8xlarge</option>
+<option value="d2.xlarge">d2.xlarge</option>
+<option value="d2.2xlarge">d2.2xlarge</option>
+<option value="d2.4xlarge">d2.4xlarge</option>
+<option value="d2.8xlarge">d2.8xlarge</option>
+<option value="i2.xlarge">i2.xlarge</option>
+<option value="i2.2xlarge">i2.2xlarge</option>
+<option value="i2.4xlarge">i2.4xlarge</option>
+<option value="i2.8xlarge">i2.8xlarge</option>
+
+						</select>
+				</td>
+		</tr>
+		<tr>
+				<td> Subnet 
+				</td>
+				<td>	
+						<select id="subnet" name="subnet">
+							{% for subnet_id, subnet_value in subnet_dict.items %}
+
+									<option value={{ subnet_id }} >
+								                  {{ subnet_value }}
+									</option>
+							 {% endfor %}
+
+						</select>
+				</td>
+		</tr>
+		<tr>
+				<td> Instance Name
+				</td>
+				<td>
+				    <input type="text" id="intsname" name="intsname" />
+				</td>
+		</tr>
+		<tr>
+				<td> Component Name
+				</td>
+				<td>
+					<input type="text" id="component" name="component" />
+				</td>
+		</tr>
+		<tr>
+				<td>Number of instances
+				</td>
+				<td>
+					<input type="text" id="instancecount" name="instancecount" />
+				</td>
+		</tr>
+		<tr align="center">
+				<td align="center" colspan="2">
+					<input type="button" onClick="return check()" value="Create Instance"/>
+				</td>
+		</tr>
+</table>
+
+
+</form>
+<script language="Javascript">
+function check()
+
+{
+if (document.getElementById('instancecount').value.trim() >2)
+{
+                    alert ("More than 2 instances cannot be created simultaneously");
+                    return false;
+}
+
+ if (document.getElementById('intsname').value.trim().length <= 0||document.getElementById('component').value.trim().length <= 0 
+                 || document.getElementById('instancecount').value.trim().length <= 0)
+                {
+                    alert ("Please enter all the desired fields");
+                    return false;
+                }
+else
+{
+	alert ("All field have been entered");
+	   document.getElementById("instance_form").submit();
+                return true;
+}
+}
+</script>
+
+</body>
+</html>
