@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -14,7 +15,7 @@
 				</td>
 				<td>
 						<select id="amiid" name="amiid">
-		<option value="ami-09725f5b">snapdeal_hvm_image </option>
+										<option value="ami-09725f5b">snapdeal_hvm_image </option>
 										<option value="ami-18dfe24a">SD-CentOS-Official-AMI-HVM-DevOps</option>
 						</select>
 				</td>
@@ -23,40 +24,12 @@
 				<td> Instance Type
 				</td>
 				<td>
-					<select id="instancetype" name="instancetype">
-								<option value="t2.micro">t2.micro</option>
-<option value="t2.small">t2.small</option>
-<option value="t2.medium">t2.medium</option>
-<option value="m3.medium">m3.medium</option>
-<option value="m3.large">m3.large</option>
-<option value="m3.xlarge">m3.xlarge</option>
-<option value="m3.2xlarge">m3.2xlarge</option>
-<option value="c4.large">c4.large</option>
-<option value="c4.xlarge">c4.xlarge</option>
-<option value="c4.2xlarge">c4.2xlarge</option>
-<option value="c4.4xlarge">c4.4xlarge</option>
-<option value="c4.8xlarge">c4.8xlarge</option>
-<option value="c3.large">c3.large</option>
-<option value="c3.xlarge">c3.xlarge</option>
-<option value="c3.2xlarge">c3.2xlarge</option>
-<option value="c3.4xlarge">c3.4xlarge</option>
-<option value="c3.8xlarge">c3.8xlarge</option>
-<option value="g2.2xlarge">g2.2xlarge</option>
-<option value="g2.8xlarge">g2.8xlarge</option>
-<option value="r3.large">r3.large</option>
-<option value="r3.xlarge">r3.xlarge</option>
-<option value="r3.2xlarge">r3.2xlarge</option>
-<option value="r3.4xlarge">r3.4xlarge</option>
-<option value="r3.8xlarge">r3.8xlarge</option>
-<option value="d2.xlarge">d2.xlarge</option>
-<option value="d2.2xlarge">d2.2xlarge</option>
-<option value="d2.4xlarge">d2.4xlarge</option>
-<option value="d2.8xlarge">d2.8xlarge</option>
-<option value="i2.xlarge">i2.xlarge</option>
-<option value="i2.2xlarge">i2.2xlarge</option>
-<option value="i2.4xlarge">i2.4xlarge</option>
-<option value="i2.8xlarge">i2.8xlarge</option>
-
+					 <select id="instancetype" name="instancetype" >
+                                                        {% for i in instance_type_list %}
+                                                                        <option value={{ i }} >
+                                                                                  {{ i }}
+                                                                        </option>
+                                                         {% endfor %}
 						</select>
 				</td>
 		</tr>
@@ -76,12 +49,39 @@
 				</td>
 		</tr>
 		<tr>
+                                <td> Security Groups
+                                </td>
+                                <td>
+                                                <select id="securitygrp" name="securitygrp" size="5" multiple="multiple">
+                                                        {% for security_id, security_value in security_group_dict.items %}
+
+                                                                        <option value={{ security_id }}>
+                                                                                  {{ security_value }}
+                                                                        </option>
+                                                         {% endfor %}
+
+                                                </select>
+                                </td>
+                </tr>
+
+		<tr>
 				<td> Instance Name
 				</td>
 				<td>
 				    <input type="text" id="intsname" name="intsname" />
 				</td>
 		</tr>
+		<tr>
+                                <td> SSH Key
+                                </td>
+                                <td>
+					 <select id="ssh" name="ssh" >
+							<option> lancer </option>
+					 </select>
+
+                                </td>
+                </tr>
+
 		<tr>
 				<td> Component Name
 				</td>
@@ -102,13 +102,14 @@
 				</td>
 		</tr>
 </table>
-
+<input type="hidden" id="hiddengrp" name="hiddengrp"/>
 
 </form>
 <script language="Javascript">
 function check()
 
 {
+alert('1111111111111111111')
 if (document.getElementById('instancecount').value.trim() >2)
 {
                     alert ("More than 2 instances cannot be created simultaneously");
@@ -124,6 +125,17 @@ if (document.getElementById('instancecount').value.trim() >2)
 else
 {
 	alert ("All field have been entered");
+		    var list=document.getElementById('securitygrp')
+		    var grplist=""
+		    for (var i = 0; i < list.options.length; i++) 
+			{
+			     if(list.options[i].selected ==true)
+				{
+				var temp=list.options[i].value
+				grplist=grplist+','+temp	
+      				}
+			}
+	   document.getElementById('hiddengrp').value=grplist;
 	   document.getElementById("instance_form").submit();
                 return true;
 }

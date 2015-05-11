@@ -1,0 +1,10 @@
+stag-app-internal-sg ,sg-aa9332cf
+prod-office-internal-sg ,sg-33d37b56
+elb-internal-sg ,sg-dd7da0b8
+prod-app-internal-sg ,sg-0ff02a6a
+prod-web-internal-sg ,sg-70fc2615
+prod-elb-internal-sg ,sg-09f9236c
+prod-db-internal-sg ,sg-51578d34
+SearchLB Internal Access ,sg-ed48b088
+catalog-admin-internal ,sg-c55aa0a0
+app-internal-sg ,sg-d0db07b5
