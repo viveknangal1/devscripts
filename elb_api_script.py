@@ -39,4 +39,5 @@ for a in lb:
 					for z in j.groups:
 					  var2 = z.name
 			        	  grplist = var2 +','+ grplist
-				print j.id +",,", name ,",,"+a.name,",,"+ j.launch_time.rstrip('.000Z') ,",,"+ env ,",,"+ comp ,",,"+ j.instance_type ,",,"+ j.state  ,",," + pip ,",,"+pubip,",,"+grplist 
+				#print j.id +",,", name ,",,"+a.name,",,"+ j.launch_time.rstrip('.000Z') ,",,"+ env ,",,"+ comp ,",,"+ j.instance_type ,",,"+ j.state  ,",," + pip ,",,"+pubip,",,"+grplist 
+				print j.id +",,", a.name ,",,"+name,",,"+j.placement,",,"+ pubip ,",,"+ pip ,",,"+ comp ,",,"+ j.instance_type ,",,"+ j.state  ,",," + env ,",,"+j.launch_time.rstrip('.000Z'),",,"+grplist
