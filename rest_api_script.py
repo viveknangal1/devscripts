@@ -31,4 +31,4 @@ for b in region_list:
 			for z in j.groups:
 			  var2 = z.name
         		  grplist = var2 +','+ grplist
-		print j.id +",,", name ,",,"+ j.launch_time.rstrip('.000Z') ,",,"+ env ,",,"+ comp ,",,"+ j.instance_type ,",,"+ j.state  ,",," + pip ,",,"+pubip,",,"+grplist ,",,"+j.region.name
+		print j.id +",,", name ,",,"+ j.launch_time.rstrip('.000Z') ,",,"+ env ,",,"+ comp ,",,"+ j.instance_type ,",,"+ j.state  ,",," + pip ,",,"+pubip,",,"+grplist ,",,"+j.placement
